@@ -1,0 +1,18 @@
+{
+  "name": "gostack-meetup",
+  "version": "1.0",
+  "author": {
+    "name": "Lucas Corrêa",
+    "email": "lucasccorrea@gmail.com"
+  },
+  "scripts": {
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1",
+    "sucrase": "^3.10.1"
+  }
+}
