@@ -16,7 +16,7 @@ class User extends Model {
 
     this.addHook('beforeSave', user => {
       if (user.password) {
-        user.password = 'password crypt';
+        user.password_hash = `${user.password} password crypt`;
       }
     });
   }
