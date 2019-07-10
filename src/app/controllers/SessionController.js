@@ -18,7 +18,6 @@ class SessionController {
     const { id, name } = user;
     const payload = {
       id,
-      email,
     };
     const token = jwt.sign(payload, AuthConfig.secret, {
       expiresIn: AuthConfig.expiresIn,

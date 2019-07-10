@@ -10,6 +10,30 @@ class UserController {
     return this.responseSuccess(userCreated, res);
   }
 
+  async update(req, res) {
+    const { userId: id } = req;
+    const { email, oldPassword } = req.body;
+
+    const user = await User.findByPk(id);
+
+    if (oldPassword && !(await user.passwordMatch(oldPassword))) {
+      return this.responseError('Old pssword is invalid', 400, res);
+    }
+
+    if (email !== user.email) {
+      const userWithEqualEmail = await User.findOne({ where: { email } });
+      if (userWithEqualEmail) {
+        return this.responseError(
+          'Already exist an user with this email',
+          400,
+          res
+        );
+      }
+    }
+    const userUpdated = await user.update(req.body);
+    return this.responseSuccess(userUpdated, res);
+  }
+
   // async update(req, res) {}
 
   responseError(msg, status, res) {
